@@ -8,16 +8,18 @@ import { actionTypes } from "../../Context/reducer"
 const LoginUser :FC= () => {
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const [token, setToken] = useState<string|null>(null)
+    const [token, setToken] = useState<any>(undefined)
     const [error, setError] = useState<boolean>()
+    const [userExist, setUserExist] = useState<any>(null)
     const dispatch = useUserDispatch();
     const navigate = useNavigate()
     function handleSubmit(){
         fetchLogin({username,password}).then((res:string)=>{
             if(typeof res === 'string'){
                 setToken(res)
+                setUserExist(true)
             } else {
-                setError(true)
+                setUserExist(false)
             }
         },(err)=>{
             console.log(err)
@@ -38,7 +40,11 @@ const LoginUser :FC= () => {
         if(error){
             alert('ببخشید یه مشکلی پیش آمد!\nلطفا دوباره امتحان کنید!')
         }
-    },[token,error])
+        if(userExist === false){
+            alert('حساب کاربری وارد شده معتبر نیست!\nلطفا ابتدا ثبت نام کنید!')
+            navigate('/sign-up')
+        }
+    },[token,error,userExist])
     return (
         <main className="flex min-h-screen w-screen justify-center items-center">
             <div className=" h-auto w-screen sm:w-[550px] py-6 px-4 bg-white rounded-3xl border mx-auto">

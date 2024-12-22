@@ -12,39 +12,28 @@ const SignUpUser :FC = () => {
     const [show, setShow] = useState<boolean>(false)
     const navigate = useNavigate()
     const dispatch = useUserDispatch()
-    // const dispatch = useContext(UserDispatch)
     const [message, setMossage] = useState<string|null>(null)
     function handleSubmit(){
         if(password === repeatPassword){
             setShow(false);
-            
             fetchSighUp({
                 "username" : username.trim(),
                 "password" : password.trim()
-            }).then((res:string)=>{console.log(res);setMossage(res)})
-            console.log(message);
-            
-            //      console.log(message,'hi')
-            // } else{
-            //     alert('hi')
-            // }
-        
-           
+            }).then((res:any)=>setMossage(res.data.message),(err:any)=>setMossage(err.response.data.message))
+        } else {
+            setShow(true)
         }
     }
     
     useEffect(()=>{
         if(message){
-
             if(message === "User already exists"){
                 setUserExist(true)
-                console.log(message,'hi2')
             } else if(message === "User registered successfully"){
                 dispatch({
                     type:actionTypes.USER_CREATED,
                     payload:username
                 })
-                console.log(message,'hi')
                 setUserExist(false)
                 navigate('/dashboard')
             } else {
@@ -56,7 +45,7 @@ const SignUpUser :FC = () => {
         <main className="flex min-h-screen w-screen justify-center items-center">
             <div className=" h-auto w-screen sm:w-[550px] py-6 px-4 bg-white rounded-3xl border mx-auto">
                 <div className="w-full my-10"> <img src={viteImage} className="w-1/4 mx-auto" alt="my logo" /> </div>
-                <h1 className="text-2xl text-center mb-10">ورود</h1>
+                <h1 className="text-2xl text-center mb-10">ثبت نام</h1>
                 <div className="px-4">
                     <input type="text" className="w-full bg-stone-100 p-3 text-black placeholder:text-zinc-500 font-semibold rounded-2xl mb-4" value={username} onChange={(e)=>setUsername(e.target.value)} placeholder="نام کاربری" />
                     <div className={`text-rose-500 mb-4 ${!userExist ? 'hidden' : ''}`}>این نام کاربری وجود دارد!</div>

@@ -4,7 +4,7 @@ interface Props {
     bookData : product
 }
 const Body :FC<Props> = ({bookData}) => {
-    const {title , image , summary, price} = bookData;
+    const {title, image, author, summary, price} = bookData;
     return (
         <main className=" w-screen justify-center flex mt-8">
             <div className="block sm:inline-block bg-white container p-8 rounded-xl">
@@ -16,7 +16,7 @@ const Body :FC<Props> = ({bookData}) => {
                     <div className="w-full sm:w-[calc(50%-50px)] h-full">
                         <h1 className="text-[30px] mb-4">{title}</h1>
                         <p className="text-xl mb-3">{summary}</p>
-                        <p className="text-xl mb-6">نشر علم</p>
+                        <p className="text-xl mb-6">{author}</p>
                         <h2 className="text-3xl font-semibold">{price} هزار تومان</h2>
                         <button type="button" className="text-white bg-rose-500 text-2xl w-full mt-8 flex justify-center rounded-lg py-3"><i className="fa fa-shopping-cart"></i>&ensp;<div className="-translate-y-1">خرید</div></button>
                     </div>
