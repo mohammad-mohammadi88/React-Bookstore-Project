@@ -17,7 +17,7 @@ export const actionTypes: any = {
 export const initialState : state = {
     IsLogin: false,
     token:'',
-    username:''
+    username:'محمد محمدی'
 }
 const reducer = produce((state:state,action:{type:string,payload:any})=>{
     switch (action.type) {

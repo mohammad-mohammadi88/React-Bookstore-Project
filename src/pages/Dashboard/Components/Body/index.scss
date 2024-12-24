@@ -1,0 +1,9 @@
+body{
+    // overflow-y: hidden;
+}
+.openModal{
+    transition: 1s;
+    opacity: 1;
+    backdrop-filter: blur(8px);
+    display: block !important;
+}

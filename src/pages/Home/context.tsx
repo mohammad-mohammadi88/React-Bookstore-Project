@@ -22,7 +22,7 @@ export function usePageDispatch(){
 
     return dispatch
 }
-export default function pageProvider({children}:any){
+export default function PageProvider({children}:any){
     const [pageNum, setPageNum] = useState(1)
     return (
         <PageNumber.Provider value={pageNum}>

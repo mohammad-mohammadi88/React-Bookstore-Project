@@ -1,21 +1,22 @@
 import { FC, useLayoutEffect, useState } from "react"
 import "./index.scss"
 import { usePageDispatch, usePageNumber } from "../../context"
-import fetchAllBooksNumber from "./fetchData"
+import { fetchAllBooksNumber } from "../Body/fetchData"
 const Footer : FC = () => {
-    const dispatch = usePageDispatch()
-    const pageNumber = usePageNumber()
     const [appPageNumbers, setAppPageNumbers] = useState<number>()
     useLayoutEffect(()=>{
         fetchAllBooksNumber().then((res:number)=>{
             if(res % 12 !== 0){
-                setAppPageNumbers(res/10+1)
+                setAppPageNumbers(res/12+1)
             } else {
-                setAppPageNumbers(res/10)
+                setAppPageNumbers(res/12)
             }
+
         })
         console.log(appPageNumbers)
     })
+    const dispatch = usePageDispatch()
+    const pageNumber = usePageNumber()
     const arr:number[] = []
     if(appPageNumbers){
         for (let i = 1; i <= appPageNumbers; i++) {

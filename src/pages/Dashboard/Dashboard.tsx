@@ -1,13 +1,17 @@
 import { FC } from "react"
-import { useUserInfo } from "../../Context/UserContext"
+import Nav from "./Components/Nav"
+import Body from "./Components/Body"
+import PageProvider from "./context"
+import Footer from "./Components/Footer"
 
 const Dashboard: FC = () => {
-    const userInfo = useUserInfo()
-    console.log("🚀 ~ userInfo:", userInfo)
-   
     return (
         <>
-            <div>Dashboard</div>
+            <PageProvider>
+                <Nav />
+                <Body />
+                <Footer />
+            </PageProvider>
         </>
     )
 }
