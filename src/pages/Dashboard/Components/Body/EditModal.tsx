@@ -32,7 +32,7 @@ const EditModal: FC<Props> = ({setEditModalShow,Info}) => {
                     <div className="flex gap-4 mt-12">
                         <button className="rounded-xl py-3 text-sm flex-1 bg-rose-500 text-white font-bold" onClick={()=>{
                             if(bookName !== '' && modalPrice > 0 && modalQuantity > 0){
-                                fetchPutBook(id,bookName,modalPrice/1000,modalQuantity)
+                                fetchPutBook(id,bookName,modalPrice>1000?modalPrice/1000:modalPrice,modalQuantity)
                                 setEditModalShow(false)
                             }
                         }}>ایجاد</button>

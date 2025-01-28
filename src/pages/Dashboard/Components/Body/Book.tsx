@@ -3,26 +3,29 @@ import { product } from "../../../../interfaces/product";
 import DelModal from "./DelModal";
 import EditModal from "./EditModal";
 interface Props {
-    Info: product;
+    Info: product,
+    setForceUpdate:any
 }
-const Book: FC<Props> = ({ Info }) => {
+
+
+const Book: FC<Props> = ({ Info,setForceUpdate }) => {
     const { title, id, quantity, price } = Info;
     const [delModalShow, setDelModalShow] = useState<boolean>(false)
     const [editModalShow, setEditModalShow] = useState<boolean>(false)
-
     function DelBook(){
         setDelModalShow(true)
+        setForceUpdate(Math.random())
     }
-
     function EditBook(){
         setEditModalShow(true)
+        setForceUpdate(Math.random())
     }
     return (
         <>
             <div className='px-12 flex justify-between py-4 '>
-                <h3>{title}</h3>
-                <h3 className="hidden sm:block">{quantity}</h3>
-                <h3 className="md:-translate-x-5">{price} هزار تومان</h3>
+                <h3 className="w-40 truncate">{title}</h3>
+                <h3 className="hidden w-10 text-center sm:block">{quantity}</h3>
+                <h3 className="md:-translate-x-5 text-left">{price} هزار تومان</h3>
                 <h3 className="truncate w-32 hidden md:block">{id}</h3>
                 <h3 className="">
                     <button className="fa fa-edit text-xl ml-2 text-green-500" onClick={EditBook}></button>

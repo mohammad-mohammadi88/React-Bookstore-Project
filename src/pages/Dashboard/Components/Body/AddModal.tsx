@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import "./index.scss"
 import { fetchAddBook } from "./fetchData"
 interface Props {
-    setAddModalShow : (a:boolean) => void,
+    setAddModalShow : (a:boolean) => void
 }
 const AddModal: FC<Props> = ({setAddModalShow}) => {
     const [bookName, setBookName] = useState<string>('')
@@ -29,7 +29,7 @@ const AddModal: FC<Props> = ({setAddModalShow}) => {
                     <div className="flex gap-4 mt-12">
                         <button className="rounded-xl py-3 text-sm flex-1 bg-rose-500 text-white font-bold" onClick={()=>{
                             if(bookName !== '' && price > 0 && quantity > 0){
-                                fetchAddBook(bookName,price/1000,quantity);
+                                fetchAddBook(bookName,price>1000?Math.floor(price/1000):price,quantity);
                                 setAddModalShow(false)
                             }
                         }}>ایجاد</button>

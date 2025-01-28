@@ -19,15 +19,15 @@ export async function fetchAllBooksNumber() {
         return err
     }
 }
-
 export async function fetchAddBook(title:string,price:number,quantity:number) {
     return await axios.post(`${import.meta.env.VITE_SERVER}book`,{
         title,
         summary: "string",
         author: "string",
+        image: "https://domobook.ir/wp-content/uploads/%D8%AC%D9%86%D8%A7%DB%8C%D8%AA-%D9%88-%D9%85%DA%A9%D8%A7%D9%81%D8%A7%D8%AA-1.jpg", 
         price,
         quantity
-    }).catch((err)=>alert(err.response.data.message))
+    }).catch((err)=>console.log(err))
 }
 
 export async function fetchDeleteBook(id:string) {
