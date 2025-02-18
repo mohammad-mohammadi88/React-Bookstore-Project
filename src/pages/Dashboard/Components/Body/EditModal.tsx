@@ -2,12 +2,14 @@ import { FC, useState } from "react"
 import "./index.scss"
 import { fetchPutBook } from "./fetchData"
 import { product } from "../../../../interfaces/product"
+import { useUserInfo } from "../../../../Context/UserContext"
 interface Props {
     setEditModalShow : (a:boolean) => void,
     Info:product
 }
 const EditModal: FC<Props> = ({setEditModalShow,Info}) => {
     const { title, id, quantity, price } = Info;
+    const { token } = useUserInfo()
     const [bookName, setBookName] = useState<string>(title)
     const [modalPrice, setModalPrice] = useState<number>(price*1000)
     const [modalQuantity, setModalQuantity] = useState<number>(quantity)
@@ -32,7 +34,7 @@ const EditModal: FC<Props> = ({setEditModalShow,Info}) => {
                     <div className="flex gap-4 mt-12">
                         <button className="rounded-xl py-3 text-sm flex-1 bg-rose-500 text-white font-bold" onClick={()=>{
                             if(bookName !== '' && modalPrice > 0 && modalQuantity > 0){
-                                fetchPutBook(id,bookName,modalPrice>1000?modalPrice/1000:modalPrice,modalQuantity)
+                                fetchPutBook(id,bookName,modalPrice>1000?modalPrice/1000:modalPrice,modalQuantity,token)
                                 setEditModalShow(false)
                             }
                         }}>ایجاد</button>

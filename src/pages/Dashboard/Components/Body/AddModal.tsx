@@ -1,6 +1,7 @@
 import { FC, useState } from "react"
 import "./index.scss"
 import { fetchAddBook } from "./fetchData"
+import { useUserInfo } from "../../../../Context/UserContext"
 interface Props {
     setAddModalShow : (a:boolean) => void
 }
@@ -8,6 +9,7 @@ const AddModal: FC<Props> = ({setAddModalShow}) => {
     const [bookName, setBookName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
     const [quantity, setQuantity] = useState<number>(0)
+    const { token } = useUserInfo()
     return (
         <div className="fixed openModal top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
             <div className="w-screen h-screen bg-gray-500 opacity-50"></div>
@@ -29,7 +31,7 @@ const AddModal: FC<Props> = ({setAddModalShow}) => {
                     <div className="flex gap-4 mt-12">
                         <button className="rounded-xl py-3 text-sm flex-1 bg-rose-500 text-white font-bold" onClick={()=>{
                             if(bookName !== '' && price > 0 && quantity > 0){
-                                fetchAddBook(bookName,price>1000?Math.floor(price/1000):price,quantity);
+                                fetchAddBook(bookName,price>1000?Math.floor(price/1000):price,quantity,token);
                                 setAddModalShow(false)
                             }
                         }}>ایجاد</button>
