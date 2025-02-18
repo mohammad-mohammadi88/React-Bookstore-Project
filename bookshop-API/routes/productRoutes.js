@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const authenticateToken = require('../middleware/authMiddleware.js');
 const router = express.Router();
 
 // Path to the products JSON file
@@ -105,11 +106,12 @@ router.get('/:id', (req, res) => {
 });
 
 // POST a new product (protected)
-router.post('/', (req, res) => {
+router.post('/',authenticateToken, (req, res) => {
 	const products = readProducts();
 	const newProduct = {
 		id: uuidv4(),
 		title: req.body.title,
+		image: req.body.image,
 		summary: req.body.summary,
 		author: req.body.author,
 		price: req.body.price,
@@ -121,7 +123,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT to update an existing product (protected)
-router.put('/:id', (req, res) => {
+router.put('/:id',authenticateToken, (req, res) => {
 	const products = readProducts();
 	const productIndex = products.findIndex((p) => p.id === req.params.id);
 	if (productIndex === -1)
@@ -134,7 +136,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE a product by ID (protected)
-router.delete('/:id', (req, res) => {
+router.delete('/:id',authenticateToken, (req, res) => {
 	const products = readProducts();
 	const newProducts = products.filter((p) => p.id !== req.params.id);
 	if (products.length === newProducts.length)
@@ -145,7 +147,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // DELETE multiple products (protected)
-router.delete('/', (req, res) => {
+router.delete('/',authenticateToken, (req, res) => {
 	const { ids } = req.body;
 	if (Array.isArray(ids))
 		return res.status(400).json({
