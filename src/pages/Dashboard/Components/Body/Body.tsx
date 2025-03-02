@@ -11,7 +11,7 @@ const Body :FC = () => {
     const [error, setError] = useState<boolean>(false)
     const [addModalShow, setAddModalShow] = useState(false)
     const [forceUpdate,setForceUpdate] = useState(0)
-
+    console.log(forceUpdate)
     useEffect(()=>{
         fetchBooks(pageNum).then((res:any)=>{
             if(res.data){
