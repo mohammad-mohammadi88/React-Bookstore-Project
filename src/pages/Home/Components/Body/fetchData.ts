@@ -1,8 +1,9 @@
 import axios from "axios"
+axios.defaults.baseURL = import.meta.env.VITE_VERCEL_SERVER
 
 async function fetchData(pageNumber:number) {
     try{
-        const productData = await axios.get(`${import.meta.env.VITE_SERVER}book?page=${pageNumber}&limit=10`);
+        const productData = await axios.get(`book?page=${pageNumber}&limit=10`);
         return productData
     } catch(err:any){
         console.log(err)

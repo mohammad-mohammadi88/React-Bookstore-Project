@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios"
-axios.defaults.baseURL = import.meta.env.VITE_SERVER;
+axios.defaults.baseURL = import.meta.env.VITE_VERCEL_SERVER;
 function setData(data:object){
     return {
         ...data,
