@@ -1,11 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const productRoutes = require('./routes/productRoutes');
-const authRoutes = require('./routes/authRoutes');
-const swaggerUi = require('swagger-ui-express');
+import express from 'express';
+import cors from 'cors';
+import productRoutes from './routes/productRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import swaggerUi from 'swagger-ui-express';
 
 // Load swagger configuration
-let swaggerDocument = require('./swagger/swagger.json');
+// import swaggerDocument from './swagger/swagger.json';
 
 const app = express();
 let PORT = process.env.PORT || 3000;
@@ -26,16 +26,16 @@ function startServer(port) {
     console.log(`Server is running on http://localhost:${port}`);
 
     // Update Swagger with the correct port
-    swaggerDocument.servers = [
-      {
-        url: `http://localhost:${port}`,
-        description: "Local server"
-      }
-    ];
+    // swaggerDocument.servers = [
+    //   {
+    //     url: `http://localhost:${port}`,
+    //     description: "Local server"
+    //   }
+    // ];
 
-    // Serve updated Swagger docs
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-    console.log(`Swagger API docs are available at http://localhost:${port}/api-docs`);
+    // // Serve updated Swagger docs
+    // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+    // console.log(`Swagger API docs are available at http://localhost:${port}/api-docs`);
   });
 
   // Handle error in case the port is in use

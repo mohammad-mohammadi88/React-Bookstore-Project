@@ -7,15 +7,23 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "node ./bookshop-API/server.js "
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
     "immer": "^10.1.1",
+    "jsonwebtoken": "^9.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.0.2",
-    "sass": "^1.83.0"
+    "sass": "^1.83.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

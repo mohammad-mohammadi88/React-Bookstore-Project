@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 const JWT_SECRET = "supersecretkey"; // Use the same secret key as in auth routes
 
 // Middleware to protect routes
@@ -20,4 +20,4 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-module.exports = authenticateToken;
+export default authenticateToken;

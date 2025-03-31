@@ -1,12 +1,11 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-const authenticateToken = require('../middleware/authMiddleware.js');
+import express from 'express';
+import fs from 'fs';
+import { v4 as uuidv4 } from "uuid"
+import authenticateToken from  '../middleware/authMiddleware.js';
 const router = express.Router();
 
 // Path to the products JSON file
-const productsFilePath = path.join(__dirname, '../data/products.json');
+const productsFilePath = '../data/products.json';
 
 // Helper functions...
 const readProducts = () => {
@@ -165,4 +164,4 @@ router.delete('/',authenticateToken, (req, res) => {
 	res.status(204).send();
 });
 
-module.exports = router;
+export default router;

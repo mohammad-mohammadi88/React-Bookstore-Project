@@ -1,12 +1,11 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
+import express from 'express';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import fs from 'fs';
 
 const router = express.Router();
 
-const usersFilePath = path.join(__dirname, '../data/users.json');
+const usersFilePath = '../data/users.json';
 
 // Helper function to read users from JSON file
 const readUsers = () => {
@@ -66,4 +65,4 @@ router.post('/login', async (req, res) => {
   res.json({ token });
 });
 
-module.exports = router;
+export default router;
